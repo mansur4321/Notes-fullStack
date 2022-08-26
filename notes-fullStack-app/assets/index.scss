@@ -1,23 +1,25 @@
 @import './nullStyle/null-style.scss';
+@import './variable/color.scss';
 
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+
+  *::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: $dark-blue-c;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+  }
 }
 
-.wrapper {
-  width: 100%;
-  height: 100vh;
-  background: url('../static/fon.jpeg') center center / 100% 100%, no-repeat;
-}
+@import './blocks/wrapper.scss';
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@import './variable/color.scss';
+@import './blocks/container.scss';
 
 @import './variable/css-variable.scss';
 
@@ -29,125 +31,8 @@
 
 @import './blocks/search.scss';
 
-.note-min {
-  width: var(--width-colum-l);
-  height: var(--height-min);
-  display: flex;
-  align-items: stretch;
-  border-bottom: 2px solid $gray-border-c;
-  cursor: pointer;
+@import './blocks/note-min.scss';
 
-  &__left-wrapper {
-    width: 88%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 5px;
+@import './blocks/icon-panel.scss';
 
-    @media (max-width: 700px) {
-      justify-content: space-between;
-    }
-  }
-
-  &__text {
-    font-size: 16px;
-    font-weight: 500;
-
-    @media (max-width: 1000px) {
-      font-size: 15px;
-    }
-    @media (max-width: 900px) {
-      font-size: 14px;
-      width: 90%;
-    }
-    @media (max-width: 700px) {
-      font-size: 12px;
-    }
-    @media (max-width: 500px) {
-      font-size: 11px;
-    }
-  }
-
-  &__date {
-    font-size: 11px;
-    color: $light-blue-c;
-    font-weight: 500;
-
-    @media (max-width: 700px) {
-      font-size: 9px;
-    }
-
-    @media (max-width: 500px) {
-      font-size: 7px;
-    }
-  }
-
-  &__right-wrapper {
-    width: 12%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__btn {
-    height: 50%;
-    margin-top: 4px;
-    position: relative;
-
-    &:hover > .note-min__image {
-      opacity: 0;
-    }
-
-    @media (max-width: 900px) {
-      margin-top: 3px;
-    }
-    @media (max-width: 700px) {
-      margin-top: 2px;
-      padding-right: 3px;
-    }
-  }
-
-  &__image {
-    position: absolute;
-    height: 18px;
-    width: 15px;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    transition: .2s;
-
-    @media (max-width: 900px) {
-      height: 16px;
-      width: 14px;
-    }
-    @media (max-width: 700px) {
-      height: 14px;
-      width: 12px;
-    }
-    @media (max-width: 500px) {
-      height: 13px;
-      width: 11px;
-    }
-  }
-
-  &__image-blue {
-    position: absolute;
-    height: 18px;
-    width: 15px;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-
-    @media (max-width: 900px) {
-      height: 16px;
-      width: 14px;
-    }
-    @media (max-width: 700px) {
-      height: 14px;
-      width: 12px;
-    }
-    @media (max-width: 500px) {
-      height: 13px;
-      width: 11px;
-    }
-  }
-}
+@import './blocks/note-panel.scss';

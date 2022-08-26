@@ -13,11 +13,17 @@
   &__min-note-wrapper {
     width: var(--width-colum-l);
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: 2px solid $gray-border-c;
   }
 
   &__note-wrapper {
     width: calc(100% - var(--width-colum-l));
     height: 100%;
+
+    border-top: 2px solid $gray-border-c;
+    border-left: 2px solid $gray-border-c;
   }
 
   @media (max-width: 1000px) {
@@ -29,5 +35,4 @@
   @media (max-width: 700px) {
     width: 400px;
   }
-
 }
