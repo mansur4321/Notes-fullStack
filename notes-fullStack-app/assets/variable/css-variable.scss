@@ -1,0 +1,26 @@
+:root {
+  --width-colum-l: 180px;
+  --height-big: 60px;
+  --height-min: 55px;
+
+  @media (max-width: 1000px) {
+    --width-colum-l: 160px;
+    --height-big: 55px;
+    --height-min: 50px;
+  }
+  @media (max-width: 900px) {
+    --width-colum-l: 150px;
+    --height-big: 50px;
+    --height-min: 45px;
+  }
+  @media (max-width: 700px) {
+    --width-colum-l: 130px;
+    --height-big: 45px;
+    --height-min: 40px;
+  }
+  @media (max-width: 500px) {
+    --width-colum-l: 100px;
+    --height-big: 40px;
+    --height-min: 35px;
+  }
+}

@@ -1,0 +1,38 @@
+@import './nullStyle/null-style.scss';
+@import './variable/color.scss';
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+
+  *::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: $dark-blue-c;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
+
+@import './blocks/wrapper.scss';
+
+@import './blocks/container.scss';
+
+@import './variable/css-variable.scss';
+
+@import './blocks/wrapper-app-note.scss';
+
+@import './blocks/header.scss';
+
+@import './blocks/add-btn.scss';
+
+@import './blocks/search.scss';
+
+@import './blocks/note-min.scss';
+
+@import './blocks/icon-panel.scss';
+
+@import './blocks/note-panel.scss';
