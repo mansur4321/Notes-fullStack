@@ -1,0 +1,15 @@
+.header {
+  width: 100%;
+  height: var(--height-big);
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  &__wrapper-btn {
+    width: var(--width-colum-l);
+  }
+
+  &__wrapper-search {
+    width: calc(100% - var(--width-colum-l));
+  }
+}

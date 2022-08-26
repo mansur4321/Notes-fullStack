@@ -1,0 +1,30 @@
+@import './nullStyle/null-style.scss';
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  background: url('../static/fon.jpeg') center center / 100% 100%, no-repeat;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@import './variable/color.scss';
+
+@import './variable/css-variable.scss';
+
+@import './blocks/wrapper-app-note.scss';
+
+@import './blocks/header.scss';
+
+@import './blocks/add-btn.scss';
+
+@import './blocks/search.scss';

@@ -1,0 +1,33 @@
+.wrapper-app-note {
+  width: 800px;
+  height: 500px;
+  background: #fff;
+
+  &__main {
+    width: 100%;
+    display: flex;
+    height: calc(100% - var(--height-big));
+    align-items: stretch;
+  }
+
+  &__min-note-wrapper {
+    width: var(--width-colum-l);
+    height: 100%;
+  }
+
+  &__note-wrapper {
+    width: calc(100% - var(--width-colum-l));
+    height: 100%;
+  }
+
+  @media (max-width: 1000px) {
+    width: 600px;
+  }
+  @media (max-width: 900px) {
+    width: 500px;
+  }
+  @media (max-width: 700px) {
+    width: 400px;
+  }
+
+}
