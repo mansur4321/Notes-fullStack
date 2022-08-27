@@ -1,13 +1,17 @@
 <template>
-  <div class="note-min">
+  <div class="note-min"
+    @click="openNote"
+  >
     <div class="note-min__left-wrapper">
-      <span class="note-min__text">name note</span>
+      <span class="note-min__text">{{note.minNoteName}}</span>
 
-      <span class="note-min__date">12.05</span>
+      <span class="note-min__date">{{note.dateNote}}</span>
     </div>
 
     <div class="note-min__right-wrapper">
-      <a class="note-min__btn">
+      <a class="note-min__btn"
+        @click="deleteNote"
+      >
         <img src="../../static/icon-delete-bin-blue.png" class="note-min__image-blue">
         <img src="../../static/icon-delete-bin.png" class="note-min__image">
       </a>
@@ -22,6 +26,20 @@
 
 <script>
 export default {
+  props: {
+    note: Object,
+    indexNote: String,
+  },
+
+  methods: {
+    deleteNote() {
+      this.$emit('deleteNote');
+    },
+
+    openNote() {
+      this.$emit('openNote', this.indexNote);
+    }
+  },
 
 }
 </script>
