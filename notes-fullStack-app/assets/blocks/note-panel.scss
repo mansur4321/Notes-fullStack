@@ -4,12 +4,14 @@
   display: flex;
   flex-direction: column;
   padding: 20px 50px 20px 30px;
+  z-index: 1;
 
   &__name {
     border-bottom: 1px solid $gray-border-dark-c;
     padding: 7px 15px;
     font-size: 18px;
     font-weight: 500;
+    z-index: 1;
 
     @media (max-width: 700px) {
       font-size: 16px;
@@ -25,6 +27,7 @@
     font-size: 16px;
     height: 100%;
     resize: none;
+    z-index: 1;
 
     @media (max-width: 700px) {
       font-size: 14px;

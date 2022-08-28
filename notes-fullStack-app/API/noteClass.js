@@ -7,7 +7,7 @@ export default class Note {
   constructor(name, text, keys) {
     this.nameNote = name;
     this.textNote = text;
-    this.index = this.toHash('note' + (keys + 1).toString()).toString();
+    this.index = this.toHash((keys + 1).toString()).toString();
   }
 
   toHash(string) {

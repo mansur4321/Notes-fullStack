@@ -11,13 +11,21 @@
 
     <div class="icon-panel__right-wrapper">
       <img src="../../static/big-icon-office-push-pin.png" class="icon-panel__icon-big">
-      <img src="../../static/icon-cross.png" class="icon-panel__icon-big">
+      <img
+        @click="closeNote"
+      src="../../static/icon-cross.png" class="icon-panel__icon-big">
     </div>
   </div>
 </template>
 
 <script>
 export default {
+
+  methods: {
+    closeNote() {
+      this.$emit('closeNote');
+    }
+  }
 
 }
 </script>

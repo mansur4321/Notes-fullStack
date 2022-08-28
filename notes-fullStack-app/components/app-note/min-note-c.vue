@@ -10,7 +10,7 @@
 
     <div class="note-min__right-wrapper">
       <a class="note-min__btn"
-        @click="deleteNote"
+        @click="deleteNote($event)"
       >
         <img src="../../static/icon-delete-bin-blue.png" class="note-min__image-blue">
         <img src="../../static/icon-delete-bin.png" class="note-min__image">
@@ -32,7 +32,8 @@ export default {
   },
 
   methods: {
-    deleteNote() {
+    deleteNote(e) {
+      e.stopPropagation();
       this.$emit('deleteNote');
     },
 

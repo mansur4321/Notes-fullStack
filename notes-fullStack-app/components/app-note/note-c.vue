@@ -17,8 +17,22 @@
       </div>
 
       <div class="wrapper-app-note__note-wrapper">
-        <icon-panel-c></icon-panel-c>
-        <note-panel-c></note-panel-c>
+        <icon-panel-c
+          @closeNote="closeNotePanel"
+          v-if="notePanel"
+        ></icon-panel-c>
+        <note-panel-c
+          @name="changeNameNote"
+          @text="changeTextNote"
+          v-if="notePanel"
+          :name="mainName"
+          :text="mainText"
+        ></note-panel-c>
+        <img src="../../static/click_fon.png" class="wrapper-app-note__image-fon"
+          :class="{
+            '_opacity-none': notePanel,
+          }"
+        >
       </div>
     </main>
   </div>
@@ -44,29 +58,65 @@ export default {
     return {
       notes: [],
       selectedNoteIndex: '',
+
+      notePanel: false,
+      mainName: '',
+      mainText: '',
     }
-  },
-
-  computed: {
-
   },
 
   methods: {
     createNewNote() {
+      if (this.selectedNoteIndex !== '') {
+        this.closeNotePanel();
+      }
+
       let length = this.notes.length;
-      let hashKeys = length === 0 ? 0 : this.note[length - 1];
+      let hashKeys = length === 0 ? 0 : this.notes[length - 1].index;
       let noteObj = new Note('','', hashKeys);
 
       this.notes.push(noteObj);
+
+      this.openNote(noteObj.index);
     },
 
     deleteNote(index) {
+      if (this.selectedNoteIndex === index) {
+        this.closeNotePanel();
+      }
+
       this.notes = this.notes.filter(note => note.index !== index);
     },
 
+
     openNote(i) {
       this.selectedNoteIndex = i;
-    }
+
+      this.notes.forEach(note => {
+        if (this.selectedNoteIndex === note.index) {
+          this.mainName = note.nameNote;
+          this.mainText = note.textNote;
+        }
+      });
+
+
+      this.notePanel = true;
+    },
+
+    closeNotePanel() {
+      this.notePanel = false;
+      this.mainName = '';
+      this.mainText = '';
+    },
+
+
+    changeNameNote(name) {
+      this.notes.find(note => note.index === this.selectedNoteIndex).nameNote = name;
+    },
+
+    changeTextNote(text) {
+      this.notes.find(note => note.index === this.selectedNoteIndex).textNote = text;
+    },
   }
 
 }
