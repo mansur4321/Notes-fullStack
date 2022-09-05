@@ -5,11 +5,12 @@
       @input="correct('name')"
     type="text" class="note-panel__name" placeholder="Название заметки">
 
-    <textarea
-      v-model="text"
+    <div
       @input="correct('text')"
-    class="note-panel__note" placeholder="Тело заметки">
-    </textarea>
+      ref="text"
+    class="note-panel__note" data-placeholder="Тело заметки" contenteditable="true">
+
+    </div>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ export default {
   props: {
     name: String,
     text: String,
+    changeTextCommand: String,
   },
 
   data() {
@@ -28,8 +30,23 @@ export default {
     }
   },
 
+  watch: {
+    changeTextCommand(value) {
+      this.changeText(value);
+    },
+
+    text(value) {
+      this.$refs.text.textContent = value;
+    }
+  },
+
+  mounted() {
+    this.$refs.text.textContent = this.text;
+  },
+
   methods: {
     correct(nameInput) {
+
       switch(nameInput) {
         case 'name':
           clearTimeout(this.timeoutName);
@@ -39,10 +56,13 @@ export default {
           }, 500);
 
           break;
+
+
         case 'text':
           clearTimeout(this.timeoutText);
 
           this.timeoutText = setTimeout(() => {
+            this.text = this.$refs.text.innerHTML;
             this.correctInput(nameInput);
           }, 500);
 
@@ -52,8 +72,27 @@ export default {
 
     correctInput(str) {
       this.$emit(str, this[str]);
-    }
+    },
 
+    changeText(name) {
+      switch(name) {
+        case 'Big':
+
+          document.execCommand('bold', false, null);
+
+          break;
+
+        case 'Italic':
+          document.execCommand('italic', false, null);
+
+          break;
+
+        case 'List':
+          document.execCommand('insertUnorderedList', false, null);
+
+          break;
+      }
+    }
   }
 
 }

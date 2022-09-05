@@ -19,6 +19,7 @@
       <div class="wrapper-app-note__note-wrapper">
         <icon-panel-c
           @closeNote="closeNotePanel"
+          @changeText="changeText"
           v-if="notePanel"
         ></icon-panel-c>
         <note-panel-c
@@ -27,6 +28,7 @@
           v-if="notePanel"
           :name="mainName"
           :text="mainText"
+          :changeTextCommand="changeTextCommand"
         ></note-panel-c>
         <img src="../../static/click_fon.png" class="wrapper-app-note__image-fon"
           :class="{
@@ -62,15 +64,13 @@ export default {
       notePanel: false,
       mainName: '',
       mainText: '',
+
+      changeTextCommand: '',
     }
   },
 
   methods: {
     createNewNote() {
-      if (this.selectedNoteIndex !== '') {
-        this.closeNotePanel();
-      }
-
       let length = this.notes.length;
       let hashKeys = length === 0 ? 0 : this.notes[length - 1].index;
       let noteObj = new Note('','', hashKeys);
@@ -90,6 +90,10 @@ export default {
 
 
     openNote(i) {
+      if (this.selectedNoteIndex !== '') {
+        this.closeNotePanel();
+      }
+
       this.selectedNoteIndex = i;
 
       this.notes.forEach(note => {
@@ -107,6 +111,7 @@ export default {
       this.notePanel = false;
       this.mainName = '';
       this.mainText = '';
+      this.selectedNoteIndex = '';
     },
 
 
@@ -117,6 +122,11 @@ export default {
     changeTextNote(text) {
       this.notes.find(note => note.index === this.selectedNoteIndex).textNote = text;
     },
+
+
+    changeText(name) {
+      this.changeTextCommand = name;
+    }
   }
 
 }

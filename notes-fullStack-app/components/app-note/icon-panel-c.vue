@@ -1,12 +1,13 @@
 <template>
   <div class="icon-panel">
-    <div class="icon-panel__left-wrapper">
-      <img src="../../static/icon-b.png" class="icon-panel__icon">
-      <img src="../../static/icon-italics.png" class="icon-panel__icon">
-      <img src="../../static/icon-list.png" class="icon-panel__icon">
+    <div class="icon-panel__left-wrapper"
+      @click="eventDelegation($event)"
+    >
+      <img actionName="Big" src="../../static/icon-b.png" class="icon-panel__icon">
+      <img actionName="Italic" src="../../static/icon-italics.png" class="icon-panel__icon">
+      <img actionName="List" src="../../static/icon-list.png" class="icon-panel__icon">
       <img src="../../static/icon-paper-clip.png" class="icon-panel__icon">
       <img src="../../static/icon-t-shirt.png" class="icon-panel__icon">
-
     </div>
 
     <div class="icon-panel__right-wrapper">
@@ -24,6 +25,12 @@ export default {
   methods: {
     closeNote() {
       this.$emit('closeNote');
+    },
+
+    eventDelegation(e) {
+      let target = e.target;
+      let actionName = target.getAttribute('actionName');
+      this.$emit('changeText', actionName);
     }
   }
 
