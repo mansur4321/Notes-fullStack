@@ -1,8 +1,8 @@
 <template>
   <div class="note-panel">
     <input
-      v-model="name"
       @input="correct('name')"
+      ref="name"
     type="text" class="note-panel__name" placeholder="Название заметки">
 
     <div
@@ -27,6 +27,9 @@ export default {
     return {
       timeoutName: null,
       timeoutText: null,
+
+      textContent: '',
+      nameContent: '',
     }
   },
 
@@ -37,11 +40,16 @@ export default {
 
     text(value) {
       this.$refs.text.textContent = value;
+    },
+
+    name(value) {
+      this.$refs.name.value = value;
     }
   },
 
   mounted() {
     this.$refs.text.textContent = this.text;
+    this.$refs.name.value = this.name;
   },
 
   methods: {
@@ -52,6 +60,7 @@ export default {
           clearTimeout(this.timeoutName);
 
           this.timeoutName = setTimeout(() => {
+            this.nameContent = this.$refs.name.value;
             this.correctInput(nameInput);
           }, 500);
 
@@ -62,7 +71,7 @@ export default {
           clearTimeout(this.timeoutText);
 
           this.timeoutText = setTimeout(() => {
-            this.text = this.$refs.text.innerHTML;
+            this.textContent = this.$refs.text.textContent;
             this.correctInput(nameInput);
           }, 500);
 
@@ -71,23 +80,26 @@ export default {
     },
 
     correctInput(str) {
-      this.$emit(str, this[str]);
+      console.log(str)
+      this.$emit(str + 'Change', this[str + 'Content']);//Изменяю потому, что ивенты и переменные называются так же но с приставками в виде этих слов
     },
 
     changeText(name) {
       switch(name) {
         case 'Big':
-
+          this.$refs.text.focus();
           document.execCommand('bold', false, null);
 
           break;
 
         case 'Italic':
+          this.$refs.text.focus();
           document.execCommand('italic', false, null);
 
           break;
 
         case 'List':
+          this.$refs.text.focus();
           document.execCommand('insertUnorderedList', false, null);
 
           break;

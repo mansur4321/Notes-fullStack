@@ -23,8 +23,8 @@
           v-if="notePanel"
         ></icon-panel-c>
         <note-panel-c
-          @name="changeNameNote"
-          @text="changeTextNote"
+          @nameChange="changeNameNote"
+          @textChange="changeTextNote"
           v-if="notePanel"
           :name="mainName"
           :text="mainText"
@@ -74,6 +74,7 @@ export default {
       let length = this.notes.length;
       let hashKeys = length === 0 ? 0 : this.notes[length - 1].index;
       let noteObj = new Note('','', hashKeys);
+
 
       this.notes.push(noteObj);
 
