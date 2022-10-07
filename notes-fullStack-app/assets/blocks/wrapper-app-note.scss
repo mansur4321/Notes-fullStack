@@ -21,9 +21,21 @@
   &__note-wrapper {
     width: calc(100% - var(--width-colum-l));
     height: 100%;
-
+    position: relative;
     border-top: 2px solid $gray-border-c;
     border-left: 2px solid $gray-border-c;
+  }
+
+  &__image-fon {
+    width: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+
+    @media (max-width: 800px) {
+      width: 100%;
+    }
   }
 
   @media (max-width: 1000px) {

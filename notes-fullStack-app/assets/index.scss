@@ -17,6 +17,12 @@
   }
 }
 
+[contenteditable]:empty:before {
+  content: attr(data-placeholder);
+  color: grey;
+  display: inline-block;
+}
+
 @import './blocks/wrapper.scss';
 
 @import './blocks/container.scss';
@@ -36,3 +42,5 @@
 @import './blocks/icon-panel.scss';
 
 @import './blocks/note-panel.scss';
+
+@import './modifiers/opacity-none.scss';

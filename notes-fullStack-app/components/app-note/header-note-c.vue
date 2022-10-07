@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <div class="header__wrapper-btn">
+    <div class="header__wrapper-btn"
+      @click="createNote"
+    >
       <add-btn-c></add-btn-c>
     </div>
 
@@ -17,7 +19,11 @@ import SearchC from './search-c.vue'
 export default {
   components: { addBtnC, SearchC },
   name: 'header-note-c',
-
+  methods: {
+    createNote() {
+      this.$emit('createNote')
+    }
+  }
 }
 </script>
 

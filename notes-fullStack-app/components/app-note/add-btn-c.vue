@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="add-btn">
+  <a class="add-btn">
     <span class="add-btn__text">add note</span>
 
     <div class="add-btn__svg">

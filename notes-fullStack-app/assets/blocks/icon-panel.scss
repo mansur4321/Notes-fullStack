@@ -6,6 +6,8 @@
   justify-content: space-between;
   padding: 0px 25px;
   border-bottom: 1px solid $gray-border-c;
+  z-index: 1;
+
 
   @media (max-width: 700px) {
     padding: 0px 10px;
@@ -14,6 +16,7 @@
   &__left-wrapper {
     display: flex;
     align-items: center;
+    z-index: 1;
   }
 
   &__icon {
@@ -47,6 +50,7 @@
   &__right-wrapper {
     display: flex;
     align-items: center;
+    z-index: 1;
   }
 
   &__icon-big {
