@@ -91,9 +91,7 @@ export default {
 
 
     openNote(i) {
-      if (this.selectedNoteIndex !== '') {
-        this.closeNotePanel();
-      }
+      this.closeNotePanel();
 
       this.selectedNoteIndex = i;
 
@@ -105,7 +103,10 @@ export default {
       });
 
 
-      this.notePanel = true;
+      function open() {
+        this.notePanel = true;
+      }
+      setTimeout(open.bind(this), 1)
     },
 
     closeNotePanel() {
@@ -127,6 +128,12 @@ export default {
 
     changeText(name) {
       this.changeTextCommand = name;
+
+
+      function nullChange() {
+        this.changeTextCommand = '';
+      }
+      setTimeout(nullChange.bind(this), 1)
     }
   }
 

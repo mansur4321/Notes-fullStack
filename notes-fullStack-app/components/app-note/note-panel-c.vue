@@ -35,20 +35,24 @@ export default {
 
   watch: {
     changeTextCommand(value) {
+      if (value === '') return;
+
       this.changeText(value);
     },
 
     text(value) {
+      this.$refs.text.innerHTML = '';
       this.$refs.text.textContent = value;
     },
 
     name(value) {
+      this.$refs.name.value = '';
       this.$refs.name.value = value;
     }
   },
 
   mounted() {
-    this.$refs.text.textContent = this.text;
+    this.$refs.text.innerHTML = this.text;
     this.$refs.name.value = this.name;
   },
 
@@ -71,7 +75,7 @@ export default {
           clearTimeout(this.timeoutText);
 
           this.timeoutText = setTimeout(() => {
-            this.textContent = this.$refs.text.textContent;
+            this.textContent = this.$refs.text.innerHTML;
             this.correctInput(nameInput);
           }, 500);
 
@@ -80,7 +84,6 @@ export default {
     },
 
     correctInput(str) {
-      console.log(str)
       this.$emit(str + 'Change', this[str + 'Content']);//Изменяю потому, что ивенты и переменные называются так же но с приставками в виде этих слов
     },
 
@@ -104,6 +107,8 @@ export default {
 
           break;
       }
+
+      this.changeTextCommand = '';
     }
   }
 
