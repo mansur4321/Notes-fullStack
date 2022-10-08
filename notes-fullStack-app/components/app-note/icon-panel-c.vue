@@ -11,9 +11,18 @@
     </div>
 
     <div class="icon-panel__right-wrapper">
-      <img
+      <div class="icon-panel__fix-icon-wrapp"
         @click="fixedN"
-      src="../../static/big-icon-office-push-pin.png" class="icon-panel__icon-big">
+      >
+        <img
+          :class="{
+            '_opacity-none': fixMode
+          }"
+        src="../../static/big-icon-office-push-pin.png" class="icon-panel__icon-big _fix-icon">
+        <img
+        src="../../static/big-icon-office-push-pin-blue.png" class="icon-panel__icon-big _fix-icon__blue">
+      </div>
+
       <img
         @click="closeNote"
       src="../../static/icon-cross.png" class="icon-panel__icon-big">
@@ -23,6 +32,9 @@
 
 <script>
 export default {
+  props: {
+    fixMode: Boolean
+  },
 
   methods: {
     closeNote() {

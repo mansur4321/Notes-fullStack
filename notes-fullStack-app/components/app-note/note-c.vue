@@ -25,6 +25,7 @@
           @closeNote="closeNotePanel"
           @changeText="changeText"
           @fixedN="fixedNote('-')"
+          :fixMode="selectedNotefixMode"
           v-if="notePanel"
         ></icon-panel-c>
         <note-panel-c
@@ -64,7 +65,9 @@ export default {
   data() {
     return {
       notes: [],
+
       selectedNoteIndex: '',
+      selectedNotefixMode: false,
 
       notePanel: false,
       mainName: '',
@@ -102,6 +105,7 @@ export default {
 
       this.notes.forEach(note => {
         if (this.selectedNoteIndex === note.index) {
+          this.selectedNotefixMode = note.toFix;
           this.mainName = note.nameNote;
           this.mainText = note.textNote;
         }
@@ -154,6 +158,7 @@ export default {
 
         if(note.index === indexN) {
           note.toFix = !note.toFix;
+          this.selectedNotefixMode = note.toFix;
         }
       });
     }
