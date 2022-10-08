@@ -16,7 +16,9 @@
         <img src="../../static/icon-delete-bin.png" class="note-min__image">
       </a>
 
-      <a class="note-min__btn">
+      <a class="note-min__btn"
+        @click="fixedN"
+      >
         <img src="../../static/icon-office-push-pin-blue.png" class="note-min__image-blue">
         <img src="../../static/icon-office-push-pin.png" class="note-min__image">
       </a>
@@ -35,6 +37,10 @@ export default {
     deleteNote(e) {
       e.stopPropagation();
       this.$emit('deleteNote');
+    },
+
+    fixedN() {
+      this.$emit('fixedN');
     },
 
     openNote() {

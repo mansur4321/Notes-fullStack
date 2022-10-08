@@ -12,6 +12,10 @@
           :indexNote="note.index"
           @deleteNote="deleteNote(note.index)"
           @openNote="openNote"
+          @fixedN="fixedNote(note.index)"
+          :class="{
+            '_fixed-note': note.toFix
+          }"
         ></min-note-c>
 
       </div>
@@ -20,6 +24,7 @@
         <icon-panel-c
           @closeNote="closeNotePanel"
           @changeText="changeText"
+          @fixedN="fixedNote('-')"
           v-if="notePanel"
         ></icon-panel-c>
         <note-panel-c
@@ -134,6 +139,23 @@ export default {
         this.changeTextCommand = '';
       }
       setTimeout(nullChange.bind(this), 1)
+    },
+
+
+    fixedNote(indexN) {
+      if (indexN === '-'){
+        indexN = this.selectedNoteIndex;
+      }
+
+      this.notes.forEach(note => {
+        if(note.index !== indexN) {
+          note.toFix = false;
+        }
+
+        if(note.index === indexN) {
+          note.toFix = !note.toFix;
+        }
+      });
     }
   }
 

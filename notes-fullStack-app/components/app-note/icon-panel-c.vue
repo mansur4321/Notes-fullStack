@@ -11,7 +11,9 @@
     </div>
 
     <div class="icon-panel__right-wrapper">
-      <img src="../../static/big-icon-office-push-pin.png" class="icon-panel__icon-big">
+      <img
+        @click="fixedN"
+      src="../../static/big-icon-office-push-pin.png" class="icon-panel__icon-big">
       <img
         @click="closeNote"
       src="../../static/icon-cross.png" class="icon-panel__icon-big">
@@ -27,10 +29,17 @@ export default {
       this.$emit('closeNote');
     },
 
+    fixedN() {
+      this.$emit('fixedN');
+    },
+
     eventDelegation(e) {
       let target = e.target;
       let actionName = target.getAttribute('actionName');
-      this.$emit('changeText', actionName);
+
+      if (actionName !== undefined) {
+        this.$emit('changeText', actionName);
+      }
     }
   }
 
