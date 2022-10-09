@@ -20,7 +20,11 @@
         @click="fixedN"
       >
         <img src="../../static/icon-office-push-pin-blue.png" class="note-min__image-blue">
-        <img src="../../static/icon-office-push-pin.png" class="note-min__image">
+        <img
+          :class="{
+            '_opacity-none': fixMode,
+          }"
+        src="../../static/icon-office-push-pin.png" class="note-min__image">
       </a>
     </div>
   </div>
@@ -31,6 +35,7 @@ export default {
   props: {
     note: Object,
     indexNote: String,
+    fixMode: Boolean,
   },
 
   methods: {

@@ -10,6 +10,7 @@
           :key="note.index"
           :note="note"
           :indexNote="note.index"
+          :fixMode="note.toFix"
           @deleteNote="deleteNote(note.index)"
           @openNote="openNote"
           @fixedN="fixedNote(note.index)"
