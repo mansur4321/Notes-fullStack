@@ -54,30 +54,46 @@
   }
 
   &__icon-big {
-    margin-left: 15px;
     width: 35px;
     height: 35px;
     cursor: pointer;
 
     @media (max-width: 1000px) {
-      margin-left: 13px;
       width: 32px;
       height: 32px;
     }
     @media (max-width: 900px) {
-      margin-left: 11px;
       width: 28px;
       height: 28px;
     }
     @media (max-width: 700px) {
-      margin-left: 9px;
       width: 24px;
       height: 24px;
     }
     @media (max-width: 500px) {
-      margin-left: 7px;
       width: 21px;
       height: 21px;
+    }
+  }
+
+  &__fix-icon-wrapp {
+    position: relative;
+    width: 35px;
+    height: 35px;
+
+    margin-right: 15px;
+
+    @media (max-width: 1000px) {
+      margin-right: 13px;
+    }
+    @media (max-width: 900px) {
+      margin-right: 11px;
+    }
+    @media (max-width: 700px) {
+      margin-right: 9px;
+    }
+    @media (max-width: 500px) {
+      margin-right: 7px;
     }
   }
 }

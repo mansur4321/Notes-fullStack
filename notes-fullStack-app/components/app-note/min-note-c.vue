@@ -16,9 +16,15 @@
         <img src="../../static/icon-delete-bin.png" class="note-min__image">
       </a>
 
-      <a class="note-min__btn">
+      <a class="note-min__btn"
+        @click="fixedN"
+      >
         <img src="../../static/icon-office-push-pin-blue.png" class="note-min__image-blue">
-        <img src="../../static/icon-office-push-pin.png" class="note-min__image">
+        <img
+          :class="{
+            '_opacity-none': fixMode,
+          }"
+        src="../../static/icon-office-push-pin.png" class="note-min__image">
       </a>
     </div>
   </div>
@@ -29,12 +35,17 @@ export default {
   props: {
     note: Object,
     indexNote: String,
+    fixMode: Boolean,
   },
 
   methods: {
     deleteNote(e) {
       e.stopPropagation();
       this.$emit('deleteNote');
+    },
+
+    fixedN() {
+      this.$emit('fixedN');
     },
 
     openNote() {
