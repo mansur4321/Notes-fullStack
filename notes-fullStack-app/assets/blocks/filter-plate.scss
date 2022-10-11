@@ -23,4 +23,9 @@
   &__item-text {
     font-size: 18px;
   }
+
+  &__string-highlight {
+    background: $light-blue-c;
+    color: white;
+  }
 }
