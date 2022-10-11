@@ -15,7 +15,8 @@
           @openNote="openNote"
           @fixedN="fixedNote(note.index)"
           :class="{
-            '_fixed-note': note.toFix
+            '_fixed-note': note.toFix,
+            '_selected-min-note': note.index === selectedNoteIndex,
           }"
         ></min-note-c>
 
