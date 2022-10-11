@@ -1,6 +1,9 @@
 <template>
   <div class="search">
-    <input type="text" class="search__input">
+    <input
+      v-model="searchString"
+      @input="sharedSearchString"
+    type="text" class="search__input" placeholder="Найдите заметку">
     <div class="search__svg">
       <svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_105_4)">
@@ -21,6 +24,36 @@
 export default {
   name: 'search-c',
 
+  data() {
+    return {
+      searchString: '',
+    }
+  },
+
+  computed: {
+    changeNote() {
+      return this.$store.state.noteFromFilter;
+    }
+  },
+
+  watch: {
+    changeNote(value) {
+      if(value === '') return;
+
+      this.closeAction();
+    }
+  },
+
+  methods: {
+    sharedSearchString() {
+      this.$store.commit('changeFilter', this.searchString);
+    },
+
+    closeAction() {
+      this.searchString = '';
+      this.sharedSearchString();
+    }
+  }
 }
 </script>
 

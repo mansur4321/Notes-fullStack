@@ -2,7 +2,7 @@ export default class Note {
   toFix = false;
   themeNote = '#fff';
   imgFile = '';
-  dateNote = this.getDate();
+  dateNote = this._getDate();
 
   constructor(name, text, keys) {
     this.nameNote = name;
@@ -26,7 +26,7 @@ export default class Note {
     return hash;
   }
 
-  getDate() {
+  _getDate() {
     let date = new Date();
     month = date.getMonth() + 1;
     let month = month < 10 ? '0' + month : month;

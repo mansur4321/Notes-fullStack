@@ -65,8 +65,6 @@ export default {
 
   data() {
     return {
-      notes: [],
-
       selectedNoteIndex: '',
       selectedNotefixMode: false,
 
@@ -78,6 +76,23 @@ export default {
     }
   },
 
+  computed: {
+    notes() {
+      return this.$store.state.notes;
+    },
+
+    indexNoteFromFilter() {
+      return this.$store.state.noteFromFilter;
+    }
+  },
+
+  watch: {
+    indexNoteFromFilter(value) {
+
+      this.openNote(value);
+    }
+  },
+
   methods: {
     createNewNote() {
       let length = this.notes.length;
@@ -85,7 +100,7 @@ export default {
       let noteObj = new Note('','', hashKeys);
 
 
-      this.notes.push(noteObj);
+      this.$store.commit('addNote', noteObj);
 
       this.openNote(noteObj.index);
     },
@@ -95,7 +110,7 @@ export default {
         this.closeNotePanel();
       }
 
-      this.notes = this.notes.filter(note => note.index !== index);
+      this.$store.commit('deleteNote', index);
     },
 
 
@@ -128,11 +143,11 @@ export default {
 
 
     changeNameNote(name) {
-      this.notes.find(note => note.index === this.selectedNoteIndex).nameNote = name;
+      this.$store.commit('changeNameNote', {name: name, index: this.selectedNoteIndex});
     },
 
     changeTextNote(text) {
-      this.notes.find(note => note.index === this.selectedNoteIndex).textNote = text;
+      this.$store.commit('changeTextNote', {text: text, index: this.selectedNoteIndex});
     },
 
 
@@ -152,15 +167,11 @@ export default {
         indexN = this.selectedNoteIndex;
       }
 
-      this.notes.forEach(note => {
-        if(note.index !== indexN) {
-          note.toFix = false;
-        }
+      this.$store.commit('fixedNote', indexN);
 
-        if(note.index === indexN) {
-          note.toFix = !note.toFix;
-          this.selectedNotefixMode = note.toFix;
-        }
+      this.notes.forEach(note => {
+        if (note.index === indexN) return;
+        this.selectedNotefixMode = note.toFix;
       });
     }
   }
