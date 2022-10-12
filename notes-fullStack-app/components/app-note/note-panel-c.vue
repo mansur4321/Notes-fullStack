@@ -42,7 +42,7 @@ export default {
 
     text(value) {
       this.$refs.text.innerHTML = '';
-      this.$refs.text.textContent = value;
+      this.$refs.text.innerHTML = value;
     },
 
     name(value) {

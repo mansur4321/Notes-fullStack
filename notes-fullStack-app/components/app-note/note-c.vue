@@ -103,6 +103,7 @@ export default {
 
       this.$store.commit('addNote', noteObj);
 
+      this.closeNotePanel();
       this.openNote(noteObj.index);
     },
 
@@ -116,8 +117,6 @@ export default {
 
 
     openNote(i) {
-      this.closeNotePanel();
-
       this.selectedNoteIndex = i;
 
       this.notes.forEach(note => {
@@ -171,7 +170,7 @@ export default {
       this.$store.commit('fixedNote', indexN);
 
       this.notes.forEach(note => {
-        if (note.index === indexN) return;
+        if (note.index !== indexN) return;
         this.selectedNotefixMode = note.toFix;
       });
     }

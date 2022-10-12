@@ -15,12 +15,13 @@
         @click="fixedN"
       >
         <img
+        src="../../static/big-icon-office-push-pin-blue.png" class="icon-panel__icon-big _fix-icon__blue">
+
+        <img
           :class="{
             '_opacity-none': fixMode
           }"
         src="../../static/big-icon-office-push-pin.png" class="icon-panel__icon-big _fix-icon">
-        <img
-        src="../../static/big-icon-office-push-pin-blue.png" class="icon-panel__icon-big _fix-icon__blue">
       </div>
 
       <img
