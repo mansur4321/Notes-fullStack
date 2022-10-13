@@ -1,6 +1,13 @@
 export default class Note {
+  _themesNote = {
+    red: 'red',
+    green: 'green',
+    yellow: 'yellow',
+    white: 'white',
+  };
+
   toFix = false;
-  themeNote = '#fff';
+  themeNote = this._themesNote.white;
   imgFile = '';
   dateNote = this._getDate();
 
@@ -8,6 +15,17 @@ export default class Note {
     this.nameNote = name;
     this.textNote = text;
     this.index = this.toHash((keys + 1).toString()).toString();
+  }
+
+  get getThemesNote() {
+    let themes = [];
+
+    for (let key in this._themesNote) {
+      themes.push(this._themesNote[key]);
+    }
+
+
+    return themes;
   }
 
   toHash(string) {

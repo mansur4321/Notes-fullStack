@@ -28,6 +28,7 @@
           @changeText="changeText"
           @fixedN="fixedNote('-')"
           :fixMode="selectedNotefixMode"
+          :themeData="themesData"
           v-if="notePanel"
         ></icon-panel-c>
         <note-panel-c
@@ -84,12 +85,15 @@ export default {
 
     indexNoteFromFilter() {
       return this.$store.state.noteFromFilter;
+    },
+
+    themesData() {
+      return this.notes.find(note => note.index === this.selectedNoteIndex);
     }
   },
 
   watch: {
     indexNoteFromFilter(value) {
-
       this.openNote(value);
     }
   },
@@ -173,6 +177,11 @@ export default {
         if (note.index !== indexN) return;
         this.selectedNotefixMode = note.toFix;
       });
+    },
+
+
+    newSelectTheme(i) {
+      this.$store.commit('ChangeThemeOfNote', index)
     }
   }
 
