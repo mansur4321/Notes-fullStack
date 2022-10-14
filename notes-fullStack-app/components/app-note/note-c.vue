@@ -9,8 +9,6 @@
           v-for="note of notes"
           :key="note.index"
           :note="note"
-          :indexNote="note.index"
-          :fixMode="note.toFix"
           @deleteNote="deleteNote(note.index)"
           @openNote="openNote"
           @fixedN="fixedNote(note.index)"
@@ -38,6 +36,7 @@
           :name="mainName"
           :text="mainText"
           :changeTextCommand="changeTextCommand"
+          :theme="themesData.themeNote"
         ></note-panel-c>
         <img src="../../static/click_fon.png" class="wrapper-app-note__image-fon"
           :class="{

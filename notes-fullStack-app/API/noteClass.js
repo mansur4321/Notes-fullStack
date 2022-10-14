@@ -1,8 +1,8 @@
 export default class Note {
   _themesNote = {
-    red: 'red',
-    green: 'green',
-    yellow: 'yellow',
+    red: 'rgba(253, 50, 50, 0.85)',
+    green: 'rgba(60, 232, 60, 0.76)',
+    yellow: 'rgba(252, 228, 49, 0.75)',
     white: 'white',
   };
 
