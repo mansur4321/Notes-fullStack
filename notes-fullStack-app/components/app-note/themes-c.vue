@@ -1,6 +1,6 @@
 <template>
   <div class="themes">
-    <img src="../../static/icon-t-shirt.png" class="icon-panel__icon">
+    <img src="../../static/icon-t-shirt.png" class="icon-panel__icon themes__icon">
 
     <div class="themes__wrapper-list">
       <div
@@ -24,7 +24,7 @@ export default {
   methods: {
     selectTheme(theme) {
       this.$store.commit('ChangeThemeOfNote', {
-        index: themeData.index,
+        index: this.themeData.index,
         theme: theme
       })
     }

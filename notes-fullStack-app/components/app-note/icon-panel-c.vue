@@ -63,7 +63,7 @@ export default {
       let target = e.target;
       let actionName = target.getAttribute('actionName');
 
-      if (actionName !== undefined) {
+      if (actionName !== null) {
         this.$emit('changeText', actionName);
       }
     },
