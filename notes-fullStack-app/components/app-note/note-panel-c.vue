@@ -1,5 +1,9 @@
 <template>
-  <div class="note-panel">
+  <div class="note-panel"
+        :style="{
+          'background': theme
+        }"
+  >
     <input
       @input="correct('name')"
       ref="name"
@@ -21,6 +25,7 @@ export default {
     name: String,
     text: String,
     changeTextCommand: String,
+    theme: String
   },
 
   data() {

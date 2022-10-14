@@ -9,8 +9,6 @@
           v-for="note of notes"
           :key="note.index"
           :note="note"
-          :indexNote="note.index"
-          :fixMode="note.toFix"
           @deleteNote="deleteNote(note.index)"
           @openNote="openNote"
           @fixedN="fixedNote(note.index)"
@@ -28,6 +26,7 @@
           @changeText="changeText"
           @fixedN="fixedNote('-')"
           :fixMode="selectedNotefixMode"
+          :themeData="themesData"
           v-if="notePanel"
         ></icon-panel-c>
         <note-panel-c
@@ -37,6 +36,7 @@
           :name="mainName"
           :text="mainText"
           :changeTextCommand="changeTextCommand"
+          :theme="themesData.themeNote"
         ></note-panel-c>
         <img src="../../static/click_fon.png" class="wrapper-app-note__image-fon"
           :class="{
@@ -84,12 +84,15 @@ export default {
 
     indexNoteFromFilter() {
       return this.$store.state.noteFromFilter;
+    },
+
+    themesData() {
+      return this.notes.find(note => note.index === this.selectedNoteIndex);
     }
   },
 
   watch: {
     indexNoteFromFilter(value) {
-
       this.openNote(value);
     }
   },
@@ -173,6 +176,11 @@ export default {
         if (note.index !== indexN) return;
         this.selectedNotefixMode = note.toFix;
       });
+    },
+
+
+    newSelectTheme(i) {
+      this.$store.commit('ChangeThemeOfNote', index)
     }
   }
 

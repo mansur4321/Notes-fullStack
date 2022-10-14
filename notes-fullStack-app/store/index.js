@@ -39,6 +39,10 @@ export const mutations = {
         note.toFix = !note.toFix;
       }
     });
+  },
+
+  ChangeThemeOfNote(state, noteObj) {
+    state.notes.find(note => note.index === noteObj.index).themeNote = noteObj.theme;
   }
 }
 

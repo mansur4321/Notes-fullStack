@@ -1,0 +1,50 @@
+.themes {
+  position: relative;
+  z-index: 2;
+
+  &__wrapper-list {
+    overflow: hidden;
+    width: 40px;
+    height: 0px;
+    padding: 0px;
+    padding: 0 4px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: absolute;
+    top: 100%;
+    left: -5px;
+    background: #fff;
+    z-index: 2;
+    transition: .4s;
+    border-right: 2px solid #000;
+    border-left: 2px solid #000;
+  }
+
+  &__wrapper-list:hover {
+    height: 135px;
+    padding: 4px;
+    border: 2px solid #000;
+    border-top: 0px;
+  }
+
+  &:hover &__wrapper-list {
+    height: 135px;
+    padding: 4px;
+    border: 2px solid #000;
+    border-top: 0px;
+  }
+
+  &__theme {
+    width: 28px;
+    height: 28px;
+    border: 2px solid $gray-border-dark-c;
+    margin-bottom: 3px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  &__icon {
+    margin: 0;
+  }
+}
+

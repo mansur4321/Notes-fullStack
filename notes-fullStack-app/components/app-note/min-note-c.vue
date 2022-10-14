@@ -1,6 +1,9 @@
 <template>
   <div class="note-min"
     @click="openNote"
+    :style="{
+      'background': note.themeNote
+    }"
   >
     <div class="note-min__left-wrapper">
       <span class="note-min__text">{{note.minNoteName}}</span>
@@ -8,7 +11,11 @@
       <span class="note-min__date">{{note.dateNote}}</span>
     </div>
 
-    <div class="note-min__right-wrapper">
+    <div class="note-min__right-wrapper"
+      :style="{
+        'box-shadow': `-10px 0 15px 18px ${note.themeNote}`,
+      }"
+    >
       <a class="note-min__btn"
         @click="deleteNote($event)"
       >
@@ -22,7 +29,7 @@
         <img src="../../static/icon-office-push-pin-blue.png" class="note-min__image-blue">
         <img
           :class="{
-            '_opacity-none': fixMode,
+            '_opacity-none': note.toFix,
           }"
         src="../../static/icon-office-push-pin.png" class="note-min__image">
       </a>
@@ -34,8 +41,6 @@
 export default {
   props: {
     note: Object,
-    indexNote: String,
-    fixMode: Boolean,
   },
 
   methods: {
@@ -49,7 +54,7 @@ export default {
     },
 
     openNote() {
-      this.$emit('openNote', this.indexNote);
+      this.$emit('openNote', this.note.index);
     }
   },
 
