@@ -9,7 +9,10 @@
 
       <img actionName="List" src="../../static/icon-list.png" class="icon-panel__icon">
 
-      <img src="../../static/icon-paper-clip.png" class="icon-panel__icon themes__main-icon">
+      <file-icon-c
+        :checkFile="checkFile"
+        :indexMainNote="indexMainNote"
+      ></file-icon-c>
 
       <themes-c
         :themeData="themeData"
@@ -38,16 +41,20 @@
 </template>
 
 <script>
+import FileIconC from './file-icon-c.vue';
 import themesC from './themes-c.vue';
 
 export default {
   components: {
     themesC,
+    FileIconC,
   },
 
   props: {
     fixMode: Boolean,
     themeData: Object,
+    indexMainNote: String,
+    checkFile: Boolean,
   },
 
   methods: {
@@ -59,8 +66,8 @@ export default {
       this.$emit('fixedN');
     },
 
-    eventDelegation(e) {
-      let target = e.target;
+    eventDelegation(input) {
+      let target = input.target;
       let actionName = target.getAttribute('actionName');
 
       if (actionName !== null) {

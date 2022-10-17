@@ -1,17 +1,19 @@
 export const state = () => ({
   notes: [],
+
+
   filterString: '',
-  noteFromFilter: ''
+  noteFromFilter: '',
 })
 
 export const mutations = {
   NoteFromFilterChange(state, index) {
     state.noteFromFilter = index;
-  },
+  },//
 
   changeFilter(state, filterString) {
     state.filterString = filterString;
-  },
+  },//
 
   addNote(state, newNote) {
     state.notes.push(newNote);
@@ -43,6 +45,10 @@ export const mutations = {
 
   ChangeThemeOfNote(state, noteObj) {
     state.notes.find(note => note.index === noteObj.index).themeNote = noteObj.theme;
+  },
+
+  changeFileInNote(state, dataObj) {
+    state.notes.find(note => note.index === dataObj.index).file = dataObj.file;
   }
 }
 

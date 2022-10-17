@@ -1,0 +1,19 @@
+.file {
+  position: relative;
+
+  &__input {
+    width: 0px;
+    height: 0;
+  }
+
+  &__fileMode {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: red;
+    z-index: 4;
+    position: absolute;
+    right: 20%;
+    bottom: 5%;
+  }
+}

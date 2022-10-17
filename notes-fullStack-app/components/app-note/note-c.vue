@@ -27,6 +27,8 @@
           @fixedN="fixedNote('-')"
           :fixMode="selectedNotefixMode"
           :themeData="themesData"
+          :indexMainNote="selectedNoteIndex"
+          :checkFile="checkFile"
           v-if="notePanel"
         ></icon-panel-c>
         <note-panel-c
@@ -88,6 +90,12 @@ export default {
 
     themesData() {
       return this.notes.find(note => note.index === this.selectedNoteIndex);
+    },
+
+    checkFile() {
+      if (this.notes.find(note => note.index === this.selectedNoteIndex).file === null) return false;
+
+      return true;
     }
   },
 
