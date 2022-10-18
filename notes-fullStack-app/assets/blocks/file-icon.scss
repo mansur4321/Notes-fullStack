@@ -16,4 +16,35 @@
     right: 20%;
     bottom: 5%;
   }
+
+  &__open-file {
+    position: absolute;
+    top: 100%;
+    padding: 2px 4px;
+    color: $dark-blue-c;
+    border: 2px solid $dark-blue-c;
+    font-size: 10px;
+    font-weight: 500;
+    left: -15%;
+    border-radius: 10px;
+    transition: .2s;
+    opacity: 0;
+    background: white;
+
+    @media (max-width: 900px) {
+      font-size: 8px;
+      padding: 2px 3px;
+    }
+
+    @media (max-width: 550px) {
+      font-size: 7px;
+      font-weight: 400;
+      border: 1px solid $dark-blue-c;
+      left: -10%;
+    }
+  }
+
+  &:hover &__open-file {
+    opacity: 1;
+  }
 }

@@ -185,11 +185,6 @@ export default {
         this.selectedNotefixMode = note.toFix;
       });
     },
-
-
-    newSelectTheme(i) {
-      this.$store.commit('ChangeThemeOfNote', index)
-    }
   }
 
 }

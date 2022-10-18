@@ -57,5 +57,7 @@ export const actions = {
 }
 
 export const getters = {
-
+  fileOfNote: (state) => (index) => {
+    return state.notes.find(note => note.index === index).file;
+  }
 }
