@@ -8,7 +8,8 @@ export default class Note {
 
   toFix = false;
   themeNote = this._themesNote.white;
-  imgFile = '';
+  imgFiles = [];
+  file = null;
   dateNote = this._getDate();
 
   constructor(name, text, keys) {
