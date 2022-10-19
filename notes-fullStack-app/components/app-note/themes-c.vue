@@ -1,5 +1,5 @@
 <template>
-  <div class="themes">
+  <div class="themes" title="Тема">
     <img src="../../static/icon-t-shirt.png" class="icon-panel__icon themes__icon">
 
     <div class="themes__wrapper-list">

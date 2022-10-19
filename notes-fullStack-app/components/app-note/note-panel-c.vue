@@ -1,18 +1,14 @@
 <template>
-  <div class="note-panel"
-        :style="{
-          'background': theme
-        }"
-  >
+  <div class="note-panel">
     <input
       @input="correct('name')"
       ref="name"
-    type="text" class="note-panel__name" placeholder="Название заметки">
+    type="text" class="note-panel__name" placeholder="Название">
 
     <div
       @input="correct('text')"
       ref="text"
-    class="note-panel__note" data-placeholder="Тело заметки" contenteditable="true">
+    class="note-panel__note" data-placeholder="Заметка" contenteditable="true">
 
     </div>
   </div>

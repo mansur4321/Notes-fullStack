@@ -3,11 +3,11 @@
     <div class="icon-panel__left-wrapper"
       @click="eventDelegation($event)"
     >
-      <img actionName="Big" src="../../static/icon-b.png" class="icon-panel__icon">
+      <img title="Жирный текст" actionName="Big" src="../../static/icon-b.png" class="icon-panel__icon">
 
-      <img actionName="Italic" src="../../static/icon-italics.png" class="icon-panel__icon">
+      <img title="Курсивный текст" actionName="Italic" src="../../static/icon-italics.png" class="icon-panel__icon">
 
-      <img actionName="List" src="../../static/icon-list.png" class="icon-panel__icon">
+      <img title="Маркированный список" actionName="List" src="../../static/icon-list.png" class="icon-panel__icon">
 
       <file-icon-c
         :checkFile="checkFile"
