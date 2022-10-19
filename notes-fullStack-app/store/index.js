@@ -49,7 +49,7 @@ export const mutations = {
 
   changeFileInNote(state, dataObj) {
     state.notes.find(note => note.index === dataObj.index).file = dataObj.file;
-  }
+  },
 }
 
 export const actions = {

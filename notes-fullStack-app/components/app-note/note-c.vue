@@ -38,7 +38,6 @@
           :name="mainName"
           :text="mainText"
           :changeTextCommand="changeTextCommand"
-          :theme="themesData.themeNote"
         ></note-panel-c>
         <img src="../../static/click_fon.png" class="wrapper-app-note__image-fon"
           :class="{
