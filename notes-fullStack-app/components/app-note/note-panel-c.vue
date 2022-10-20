@@ -98,6 +98,7 @@ export default {
       this.$emit(str + 'Change', this[str + 'Content']);//Изменяю потому, что ивенты и переменные называются так же но с приставками в виде этих слов
     },
 
+
     changeText(name) {
       switch(name) {
         case 'Big':
@@ -131,13 +132,35 @@ export default {
       }
     },
 
-    dropFileForDownload(event) {
-      const file = event.dataTransfer.files[0];
+    pasteImgInNote(event) {
+      const file = event.clipboardData.files[0];
       let checked = this.checkTypeFile(file);
 
       if (!checked) return;
 
+      this.dropImageInNote(event.clipboardData);
+    },
+
+    dropFileForDownload(event) {
+      const file = event.dataTransfer.files[0];
+      const checked = this.checkTypeFile(file);
+
+      if (!checked) return;
+
+      this.$refs.text.focus();
+      this.dragElementStyleArea(false);
       this.dropImageInNote(event.dataTransfer);
+    },
+
+    checkTypeFile(file) {
+      if(!file) return false;
+
+      if (!file.type.includes('image')) {
+        alert('Загружать можно только картинки!')
+        return false;
+      }
+
+      return true;
     },
 
     dropImageInNote(dataTransfer) {
@@ -145,6 +168,15 @@ export default {
       const img = this.createImage(file);
 
       this.insertElement(img);
+    },
+
+    createImage(file) {
+      const img = document.createElement('img');
+
+      img.src = URL.createObjectURL(file);
+      img.classList.add('image-in-note');
+
+      return img
     },
 
     insertElement(elem) {
@@ -160,6 +192,7 @@ export default {
           + `<br><${elem.localName} src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
           + endNode.parentNode.innerHTML.toString().substring(end);
 
+        sel.deleteFromDocument();
         startNode.parentNode.innerHTML = finText;
 
       } else {
@@ -167,41 +200,14 @@ export default {
           + `<br><${elem.localName} src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
           + endNode.innerHTML.toString().substring(end);
 
+        sel.deleteFromDocument();
         startNode.innerHTML = finText;
       }
 
 
+      this.correct('text');
       this.$refs.text.focus();
     },
-
-    createImage(file) {
-      const img = document.createElement('img');
-
-      img.src = URL.createObjectURL(file);
-      img.classList.add('image-in-note');
-
-      return img
-    },
-
-    checkTypeFile(file) {
-      if(!file) return false;
-
-      if (!file.type.includes('image')) {
-        alert('Загружать можно только картинки!')
-        return false;
-      }
-
-      return true;
-    },
-
-    pasteImgInNote(event) {
-      const file = event.clipboardData.files[0];
-      let checked = this.checkTypeFile(file);
-
-      if (!checked) return;
-
-      this.dropImageInNote(event.clipboardData);
-    }
   }
 
 }
