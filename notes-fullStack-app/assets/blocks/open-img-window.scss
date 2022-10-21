@@ -1,0 +1,33 @@
+.open-img-window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  background: #00000085;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__image {
+    width: auto;
+    height: auto;
+
+    max-width: calc(100vw - 100px);
+    max-height: calc(100vh - 100px);
+
+    @media (max-width: 900px) {
+      max-width: calc(100vw - 90px);
+    }
+
+    @media (max-width: 600px) {
+      max-width: calc(100vw - 60px);
+      max-height: calc(100vh - 60px);
+    }
+
+    @media (max-width: 450px) {
+      max-width: calc(100vw - 40px);
+    }
+  }
+}

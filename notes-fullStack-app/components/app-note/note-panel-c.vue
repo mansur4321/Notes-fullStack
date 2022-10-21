@@ -54,17 +54,23 @@ export default {
     text(value) {
       this.$refs.text.innerHTML = '';
       this.$refs.text.innerHTML = value;
+
+      this.fullImgAddEvents();
     },
 
     name(value) {
       this.$refs.name.value = '';
       this.$refs.name.value = value;
+
+      this.fullImgAddEvents();
     }
   },
 
   mounted() {
     this.$refs.text.innerHTML = this.text;
     this.$refs.name.value = this.name;
+
+    this.fullImgAddEvents();
   },
 
   methods: {
@@ -187,10 +193,9 @@ export default {
       let startNode = sel.anchorNode;
       let endNode = sel.focusNode;
 
-
       if (startNode.innerHTML === undefined) {
         let finText = startNode.parentNode.innerHTML.toString().substring(0, start)
-          + `<br><${elem.localName} id="img" src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
+          + `<br><${elem.localName} id="img" src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')} selectImg"><br>`
           + endNode.parentNode.innerHTML.toString().substring(end);
 
         sel.deleteFromDocument();
@@ -198,16 +203,17 @@ export default {
 
       } else {
         let finText = startNode.innerHTML.toString().substring(0, start)
-          + `<br><${elem.localName} id="img" src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
+          + `<br><${elem.localName} id="img" src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')} selectImg"><br>`
           + endNode.innerHTML.toString().substring(end);
 
         sel.deleteFromDocument();
         startNode.innerHTML = finText;
       }
-      let img = document.getElementById('img');
 
-      img.onload = () => {
 
+      const img = document.getElementById('img');
+
+      img.addEventListener('load', () => {
         if (img.width <= 150 && img.height <= 150) {
           img.removeAttribute('id');
 
@@ -225,12 +231,38 @@ export default {
           img.classList.add('image-in-note__cub');
         }
 
+
         img.removeAttribute('id');
-      }
+      });
+
+
+      const imgOfSrc = document.querySelector(`img[src="${img.getAttribute('src')}"]`);
+
+      imgOfSrc.onclick = ((img) => {
+        this.openImage(img.getAttribute('src'))
+      }).bind(this, imgOfSrc);
+
 
       this.correct('text');
       this.$refs.text.focus();
     },
+
+    openImage(src) {
+      this.$store.commit('changeImgFileURL', {
+        mode: true,
+        src: src,
+      });
+    },
+
+    fullImgAddEvents() {
+      const imagesOfSrc = document.querySelectorAll(`.selectImg`);
+
+      imagesOfSrc.forEach(imageOfSrc => {
+        imageOfSrc.onclick = ((img) => {
+          this.openImage(img.getAttribute('src'))
+        }).bind(this, imageOfSrc);
+      });
+    }
   }
 
 }
