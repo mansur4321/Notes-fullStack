@@ -1,6 +1,8 @@
 export const state = () => ({
   notes: [],
 
+  openModeWindow: false,
+  imgFileUrl: null,
 
   filterString: '',
   noteFromFilter: '',
@@ -49,6 +51,12 @@ export const mutations = {
 
   changeFileInNote(state, dataObj) {
     state.notes.find(note => note.index === dataObj.index).file = dataObj.file;
+  },
+
+
+  changeImgFileURL(state, dataObj) {
+    state.openModeWindow = dataObj.mode;
+    state.imgFileUrl = dataObj.src;
   }
 }
 
