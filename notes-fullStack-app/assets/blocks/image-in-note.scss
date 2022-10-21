@@ -1,6 +1,19 @@
 .image-in-note {
-  width: 200px;
-  height: 100px;
   cursor: pointer;
   border: 1px solid $gray-border-dark-c;
+
+  &__gorizont {
+    width: 200px;
+    height: 100px;
+  }
+
+  &__vertical {
+    width: 100px;
+    height: 200px;
+  }
+
+  &__cub {
+    width: 150px;
+    height: 150px;
+  }
 }

@@ -176,6 +176,7 @@ export default {
       img.src = URL.createObjectURL(file);
       img.classList.add('image-in-note');
 
+
       return img
     },
 
@@ -189,7 +190,7 @@ export default {
 
       if (startNode.innerHTML === undefined) {
         let finText = startNode.parentNode.innerHTML.toString().substring(0, start)
-          + `<br><${elem.localName} src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
+          + `<br><${elem.localName} id="img" src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
           + endNode.parentNode.innerHTML.toString().substring(end);
 
         sel.deleteFromDocument();
@@ -197,13 +198,35 @@ export default {
 
       } else {
         let finText = startNode.innerHTML.toString().substring(0, start)
-          + `<br><${elem.localName} src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
+          + `<br><${elem.localName} id="img" src="${elem.getAttribute('src')}" class="${elem.getAttribute('class')}"><br>`
           + endNode.innerHTML.toString().substring(end);
 
         sel.deleteFromDocument();
         startNode.innerHTML = finText;
       }
+      let img = document.getElementById('img');
 
+      img.onload = () => {
+
+        if (img.width <= 150 && img.height <= 150) {
+          img.removeAttribute('id');
+
+          return;
+        }
+
+
+        const calc = img.width - img.height;
+//Вычисляю примерное отношение сторон у загруженной картинки для правильного отображения
+        if (calc > 100) {
+          img.classList.add('image-in-note__gorizont');
+        } else if (calc < -100) {
+          img.classList.add('image-in-note__vertical');
+        } else {
+          img.classList.add('image-in-note__cub');
+        }
+
+        img.removeAttribute('id');
+      }
 
       this.correct('text');
       this.$refs.text.focus();
